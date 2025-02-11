@@ -1,0 +1,23 @@
+{
+    "app_name": "Credit Agreement App",
+    "app_version": "0.0.3",
+    "created_at_ms": 1724820882000,
+    "deployed_solution_id": "037678e9-1fd9-4720-b830-4822fb07d8c7",
+    "description": "",
+    "human_review_level": "run_based",
+    "human_review_mode": "ON",
+    "id": "01919756-042a-7e28-9801-155859a802c7",
+    "last_run_job_id": null,
+    "last_run_status": null,
+    "last_run_timestamp_ns": null,
+    "metric_alerts": null,
+    "name": "Credit Agreement App",
+    "notification_emails": null,
+    "owner": "nithin",
+    "retention_settings": {},
+    "review_within_sec": null,
+    "state": "ACTIVE",
+    "updated_at_ms": 1724820882000,
+    "webhooks": null,
+    "workspace": "SolEng_workspace"
+}
