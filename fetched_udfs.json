@@ -1,0 +1,53 @@
+{
+    "5618": {
+        "args": [
+            {
+                "data_type": "FIELD",
+                "name": "Maturity_Date",
+                "value": "Maturity Date"
+            }
+        ],
+        "code": "    import dateparser\n    import re\n    date_formats = ['^\\\\d{2}/\\\\d{2}/\\\\d{4}$', '^\\\\w+ \\\\d{1,2}, \\\\d{4}$', '^\\\\d{4}$', '^\\\\d{4}-\\\\d{2}-\\\\d{2}$', '^\\\\d{2}-\\\\d{2}-\\\\d{4}$', '^\\\\d{4}/\\\\d{2}/\\\\d{2}$', '^\\\\d{1,2}(st|nd|rd|th) \\\\w+ \\\\d{4}$']\n    if not any((re.match(fmt, Maturity_Date) for fmt in date_formats)):\n        return \"Invalid date format for 'Maturity Date'.\"\n    parsed_date = dateparser.parse(Maturity_Date)\n    if not parsed_date:\n        return \"Invalid date format for 'Maturity Date'.\"\n    return None",
+        "docstring": "    Validates the 'Maturity Date' field.\n\n    Fields:\n    - Maturity Date: Expected to be a string representing a date in various formats such as:\n      * '17/12/2024'\n      * 'March 8, 2018'\n      * '2015'\n      * '2019'\n      * 'December 8, 2025'\n      * 'September 30, 2024'\n      * 'September 30, 2025'\n\n    The function checks if the 'Maturity Date' is in a valid format. If it is not, it returns a specific error message.\n    If the date is valid, it returns None.",
+        "lambda_end_of_life": null,
+        "lambda_id": "9",
+        "lambda_udf_id": "v1:AWS_LAMBDA:4027417007:insaprd-use2-aihub-prd-docker-default-udf:8",
+        "last_updated_at": "1737022700000",
+        "name": "validate_maturity_date",
+        "udf_type": "VALIDATIONS"
+    },
+    "5619": {
+        "args": [
+            {
+                "data_type": "LINE",
+                "name": "previous_line",
+                "value": "Borrower Names@1"
+            }
+        ],
+        "code": "\t# Import Python packages\n\t# import json\n\t\n\t# Log statements using print()\n\t# print(\"This will appear in the logs\")\n\t\n\t# Return the cleaned output\n\treturn previous_line",
+        "docstring": null,
+        "lambda_end_of_life": null,
+        "lambda_id": "9",
+        "lambda_udf_id": "v1:AWS_LAMBDA:4411399016:insaprd-use2-aihub-prd-docker-default-udf:8",
+        "last_updated_at": "1737023259000",
+        "name": "unnamed_custom_function",
+        "udf_type": "REFINER"
+    },
+    "5620": {
+        "args": [
+            {
+                "data_type": "LINE",
+                "name": "previous_line",
+                "value": "Borrower Names@0"
+            }
+        ],
+        "code": "\t# Import Python packages\n\t# import json\n\t\n\t# Log statements using print()\n\t# print(\"This will appear in the logs\")\n\t\n\t# Return the cleaned output\n\treturn previous_line",
+        "docstring": null,
+        "lambda_end_of_life": null,
+        "lambda_id": "9",
+        "lambda_udf_id": "v1:AWS_LAMBDA:3738494271:insaprd-use2-aihub-prd-docker-default-udf:8",
+        "last_updated_at": "1737024096000",
+        "name": "unnamed_custom_function",
+        "udf_type": "REFINER"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "appReleaseVersion": "24.48",
+    "author": "simran.gupta_instabase.com",
+    "createdAtMs": "1735881374000",
+    "description": "No release notes",
+    "id": "ca9b4325-58c4-4764-abf6-74674163b9f2",
+    "isCustomizable": false,
+    "linkSharingMode": "OFF",
+    "metadata": "{\"authors\": [\"simran.gupta_instabase.com\"], \"icon\": \"icon.png\", \"samples\": \"\", \"results\": \"\", \"schema\": \"schema.json\", \"project_id\": \"0193aa25-6544-775f-b9c9-413793f9f9b8\", \"billing_model\": \"default\", \"has_project_snapshot\": true, \"org_context_type\": \"ENTERPRISE\"}",
+    "name": "Credit Agreement App",
+    "owner": "simran.gupta_instabase.com",
+    "solutionType": "EXTRACTION",
+    "solution_path": "system/global/fs/Instabase Drive/Applications/Deployed/All/ca9b4325-58c4-4764-abf6-74674163b9f2",
+    "state": "PRODUCTION",
+    "summary": "No summary",
+    "updateMode": "UPDATE_WHEN_EXPIRED",
+    "updatedAtMs": "1735881385000",
+    "version": "2.0.0",
+    "visibility": "PRIVATE"
+}

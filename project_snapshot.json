@@ -1,0 +1,892 @@
+{
+    "project_data": {
+        "createdAtMs": "1733726398000",
+        "creationBase": "NONE",
+        "dataMountPath": "ib-internal/SolEng_workspace/fs/Instabase Drive/aihub/0193aa25-6544-775f-b9c9-413793f9f9b8",
+        "description": "New project",
+        "id": "0193aa25-6544-775f-b9c9-413793f9f9b8",
+        "llm": "gpt-3.5-turbo",
+        "name": "Credit Agreement App",
+        "owner": "40924d49-c2db-48fb-95eb-6a282e803ff5",
+        "ownerPublicId": "simran.gupta_instabase.com",
+        "projectMountPath": "ib-internal/SolEng_workspace/fs/Instabase Drive/aihub/0193aa25-6544-775f-b9c9-413793f9f9b8",
+        "repoId": "98821aa8-fd02-43d9-9ae0-2b958213c050",
+        "schemaVersion": "1",
+        "settings": {
+            "advanced_ocr": {
+                "isChangeLanguageType": false,
+                "isSelectCheckboxes": false,
+                "isSelectFileAsImage": false,
+                "isSelectTables": true,
+                "languageType": "standard",
+                "pagesText": "",
+                "version": "v1"
+            }
+        },
+        "type": "BUILD",
+        "updatedAtMs": "1735889926000",
+        "workspace": "SolEng_workspace"
+    },
+    "project_schema": {
+        "Credit Agreement": {
+            "class_id": "111384",
+            "description": "",
+            "fields": [
+                {
+                    "data_type": "TEXT",
+                    "description": "Facility Amount",
+                    "field_id": "332263",
+                    "lines": [],
+                    "model_type": "DEFAULT",
+                    "name": "Facility Amount",
+                    "position": 0,
+                    "prompt": "Facility Amount",
+                    "prompt_schema": null,
+                    "prompt_type": "basic"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Identify the Effective Date of the agreement when the terms start to apply.",
+                    "field_id": "332264",
+                    "lines": [
+                        {
+                            "function_args": [
+                                {
+                                    "data_type": "TEXT",
+                                    "name": "input__format",
+                                    "value": "\"\""
+                                },
+                                {
+                                    "data_type": "TEXT",
+                                    "name": "output__format",
+                                    "value": "\"ddmmyyyy\""
+                                }
+                            ],
+                            "function_id": null,
+                            "line_type": "NATIVE",
+                            "native_fn_name": "format_date",
+                            "prompt": null
+                        }
+                    ],
+                    "model_type": "DEFAULT",
+                    "name": "Effective Date",
+                    "position": 1,
+                    "prompt": "Effective Date",
+                    "prompt_schema": null,
+                    "prompt_type": "basic"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Return the facility types mentioned in the document (Term Loan, Revolving Loan).\nThis information is typically found in Section 2.",
+                    "field_id": "332265",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return as a list."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Facility Type",
+                    "position": 3,
+                    "prompt": "Identify the facility types mentioned in the document, specifically Term Loan and Revolving Loan, typically found in Section 2.\n\nReturn only facility types(term loan or revolving loan), nothing else.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "OBJECT_LIST",
+                    "description": "Extract the complete definition of the \"Applicable Margin\", containing percentage value in their definitions.",
+                    "field_id": "332266",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return only the Pricing Options and their corresponding spread Rates per annum as a list."
+                        },
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Remove duplicates"
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Spread Rate",
+                    "position": 10,
+                    "prompt": "Spread Rate",
+                    "prompt_schema": [
+                        {
+                            "description": "",
+                            "name": "Pricing Options"
+                        },
+                        {
+                            "description": "",
+                            "name": "Spread Rate"
+                        }
+                    ],
+                    "prompt_type": "basic"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Extract the Governing Law, indicating the jurisdiction whose laws govern the agreement.",
+                    "field_id": "332267",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return the state laws as a list."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Governing Law",
+                    "position": 8,
+                    "prompt": "Extract the \"Governing Law\" specified in the credit agreement document. Look for sections or clauses that define the legal jurisdiction or the state, country, or region whose laws will govern the interpretation and enforcement of the agreement.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "The borrower's name in a credit agreement is the name of the person or entity that is borrowing money or another item.\nThe borrower's name is typically found in the introductory sections",
+                    "field_id": "332268",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "multiple names"
+                        },
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "N/A if no value present"
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Borrower Names",
+                    "position": 5,
+                    "prompt": "Borrower Names",
+                    "prompt_schema": null,
+                    "prompt_type": "basic"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Extract the Accrual Basis in days from the document, corresponding to each loan type or pricing option.\nIdentify references to 360, 365, or 366 days for each pricing option mentioned.",
+                    "field_id": "332269",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return in table format (Borrowing loan & Accrual Basis in days).\nReturn 'NA' if not found."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Accrual Basis",
+                    "position": 7,
+                    "prompt": "Return the types of pricing options specified by the borrower, such as ABR, Eurodollar, typically mentioned in section 2.\nDon't return the facility types like Term loan & Revolving Loan.\n\nThen, return the Accrual Basis in days (360, 365, or 366) for each pricing option mentioned in the interest payment dates section.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Identify the Business Date Convention, specifying how business days are defined or adjusted for the purposes of the agreement.",
+                    "field_id": "332270",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return only one Convention Used either ('Next Succeeding Business Day,' 'Previous Business Day,' 'Next Succeeding Business Day Unless Next Month,' or 'Due Same Day')."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Business Day Adjustment",
+                    "position": 9,
+                    "prompt": "Return the Business Date Convention, specifying how business days are defined or adjusted for the purposes of the agreement.\nPossible values like 'Next Succeeding Business Day,' 'Previous Business Day,' 'Next Succeeding Business Day Unless Next Month,' or 'Due Same Day.'",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "OBJECT_LIST",
+                    "description": "Extract all the types of agents mentioned in the credit agreement document, such as \"Administrative Agent,\" \"Collateral Agent,\" \"Syndication Agent,\" and \"Documentation Agent\" along with the banks as the agents.",
+                    "field_id": "332271",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return as a list (agents types and org names)."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Agents",
+                    "position": 6,
+                    "prompt": "Agents",
+                    "prompt_schema": [
+                        {
+                            "description": "Look for terms like \"Agent,\" \"Arrangers,\" or \"Administrative Agent.",
+                            "name": "Agent description"
+                        },
+                        {
+                            "description": "name of the bank",
+                            "name": "Bank name"
+                        }
+                    ],
+                    "prompt_type": "basic"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": null,
+                    "field_id": "332272",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return the pricing options as a list."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Pricing Options",
+                    "position": 4,
+                    "prompt": "Pricing Options",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "The date by which the entire loan amount must be repaid",
+                    "field_id": "332273",
+                    "lines": [],
+                    "model_type": "ADVANCED",
+                    "name": "Maturity Date",
+                    "position": 2,
+                    "prompt": "Maturity Date",
+                    "prompt_schema": null,
+                    "prompt_type": "basic"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "First extract the types of pricing options specified by the borrower, such as ABR, Eurodollar, typically mentioned in section 2.\nDon't return the facility types like Term loan & Revolving Loan.\n\nThen for each pricing option extract the definition from the definition section.",
+                    "field_id": "332274",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return in a list format( pricing options & definitions)."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Pricing Option Definition",
+                    "position": 11,
+                    "prompt": "First extract the types of pricing options names specified by the borrower, such as ABR, Eurodollar, typically mentioned in section 2.\nDon't return the facility types like Term loan & Revolving Loan. \n\nThen, return the complete definitions related to the pricing options names only mentioned in the definition section.\nFocus on definitions that are under headings including terms related to the pricing options, and look for suffixes such as \"rate,\" \"loans\", \"base rate\", or the full form of the pricing options.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Extract the \"All-In Rate Floor\" value from the credit agreement. This value represents the minimum total interest rate, including all applicable fees and costs, specified in the document.",
+                    "field_id": "332275",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return as a table (Pricing Option names & All in Rate)"
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "All in rate Floor",
+                    "position": 12,
+                    "prompt": "First extract the types of pricing options names specified by the borrower, such as ABR, Eurodollar, typically mentioned in section 2.\nDon't return the facility types like Term loan & Revolving Loan. \n\nThen, return the complete definitions related to the pricing options names only mentioned in the definition section.\nFocus on definitions that are under headings including terms related to the pricing options, and look for suffixes such as \"rate,\" \"loan\", \"base rate\", or the full form of the pricing option.\n\nFrom each definition, find the first decimal percentage value. If no numerical rate is found, return 'NA'.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "x",
+                    "field_id": "332276",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return facility type and its corresponding bill types as a list.\nReturn only interest if principal is not present."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Bill Type",
+                    "position": 13,
+                    "prompt": "Identify the facility types mentioned in the document, specifically Term Loan and Revolving Loan, typically found in Section 2. Return only the facility types (Term Loan or Revolving Loan).\n\nThen, for each facility type, find whether both interest and principal are used for repayment, or only interest.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Return the frequency(monthly, quarterly, or annually) for interest and principal payments.\n\nFor Interest Payments, refer to the Interest section, specifically under Accrued Interest or in Interest Payment Date definitions, to determine the frequency of interest payments(monthly, quarterly, or annually).\n\nFor Principal Payments, refer to the \"Repayment of loans\" section and identify the frequency of principal payments. If the frequency is not explicitly mentioned, refer to the table given in the repayment of loans section and compute the frequency(monthly, quarterly, or annually).",
+                    "field_id": "332277",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return as a table (Pricing Option & frequency)."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Interest Frequency",
+                    "position": 15,
+                    "prompt": "Return the interest payment dates for the pricing option typically mentioned in the \"interest\", \"interest payment date\", \"interest  date\" definition.\nThe specific dates on which interest payments are due.\nThen, determine the frequency of interest repayments (e.g., monthly, quarterly, annually).",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Principal Amount",
+                    "field_id": "332278",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return the principal amount or percentage."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Principal Bill Amount",
+                    "position": 18,
+                    "prompt": "Return the principal amount for principal repayments mentioned in repayment of loans sections.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Extract the Repayment date for interest payment specified in the credit agreement document. \nLook in the Interest section or in Interest Payment Date definitions. Identify the dates when interest payments are due.",
+                    "field_id": "332279",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return as a table (pricing options & payment dates)."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Interest Due Date",
+                    "position": 14,
+                    "prompt": "Return the interest payment dates for the pricing options typically mentioned in the \"interest\" or \"interest payment date\" definition.\nThe specific dates on which interest payments are due.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "First, extract the complete content of the repayment of loans section.\n\nThen, return the principal payment due dates for the pricing options. \n\nThere will be two ways in which the dates will be mentioned either in text form or in tables.",
+                    "field_id": "332280",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return the due dates as a list. Return 'NA' if not found."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Principal Bill Due Date",
+                    "position": 16,
+                    "prompt": "Return the principal payment dates for the pricing options from the repayment of loans section.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Always found in Fees / Unused commitment fees section",
+                    "field_id": "332281",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return only fee effective date."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Fee Effective Date",
+                    "position": 19,
+                    "prompt": "It would generally be after \"during the period from\" text in the fee section.\nReturn 'NA' if not found.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Extract the \"Principal Bill Frequency\" from the credit agreement document. Focus on the \"Repayment of Loans\" section, \"Principal Payment Schedule,\" or any related tables that specify how often principal payments are required (e.g., monthly, quarterly, annually).",
+                    "field_id": "332282",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return only frequency. Return 'NA' if not found."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Principal Bill Frequency",
+                    "position": 17,
+                    "prompt": "Return the frequency for principal payments (monthly, quarterly, annually) mentioned in the repayment of loans section.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Fee Rate",
+                    "field_id": "332283",
+                    "lines": [],
+                    "model_type": "ADVANCED",
+                    "name": "Fee Rate",
+                    "position": 20,
+                    "prompt": "Fee Rate",
+                    "prompt_schema": null,
+                    "prompt_type": "basic"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "CFee Amount Fixed",
+                    "field_id": "332284",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return the fee Amount. Return 'NA' if not found."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Fixed Fee Amount",
+                    "position": 21,
+                    "prompt": "Fixed Commitment Fee Amount",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "It would generally be after \"excluding\" text in the fee section.",
+                    "field_id": "332285",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return only fee expiration date."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Fee Expiration Date",
+                    "position": 22,
+                    "prompt": "It would generally be after \"excluding\" text in the commitment fee section.\nReturn 'NA' if not found.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Return the date before which the agents and lenders shall receive the fees.",
+                    "field_id": "332286",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return the fee payment date. Return 'NA' if not found."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Fee Payment Date",
+                    "position": 23,
+                    "prompt": "Identify the payment dates for agents and lenders to receive the commitment fees from the commitment fee section.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Identify the frequency of fee payments (e.g., Monthly, Quarterly, Annually) from the fee section.",
+                    "field_id": "332287",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return only frequency. Return 'NA' if not found."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Fee Payment Frequency",
+                    "position": 24,
+                    "prompt": "Identify the frequency of fee payments (e.g., Monthly, Quarterly, Annually) from the commitment fee section.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "return the Accrual Basis in days (360, 365, or 366) for each pricing option mentioned in the document.",
+                    "field_id": "332288",
+                    "lines": [
+                        {
+                            "function_args": [],
+                            "function_id": null,
+                            "line_type": "PROMPT",
+                            "native_fn_name": null,
+                            "prompt": "Return the value."
+                        }
+                    ],
+                    "model_type": "ADVANCED",
+                    "name": "Fee Accrual Basis",
+                    "position": 25,
+                    "prompt": "Return the Accrual Basis in days (360, 365, or 366) for fee payments from the commitment fee section.\nReturn 'NA' if not found.",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "Extract the methodology for analyzing the interest coverage ratio from the credit agreement. Detail how EBITDA is calculated according to the agreement. Additionally, determine if the agreement specifies referencing the most recent 10-K filing for automatic calculation of these metrics, and how this is to be implemented.",
+                    "field_id": "332289",
+                    "lines": [],
+                    "model_type": "ADVANCED",
+                    "name": "EBITDA",
+                    "position": 27,
+                    "prompt": "How is EBITDA calculated?",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "EBITDA to Debt ratio to be maintained by the borrower generally mentioned in the negative covenants section.",
+                    "field_id": "332290",
+                    "lines": [],
+                    "model_type": "ADVANCED",
+                    "name": "EBITDA to Debt ratio",
+                    "position": 28,
+                    "prompt": "EBITDA to Debt ratio",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                },
+                {
+                    "data_type": "TEXT",
+                    "description": "how is interest coverage ratio analyzed?",
+                    "field_id": "332291",
+                    "lines": [],
+                    "model_type": "ADVANCED",
+                    "name": "Interest Coverage Ratio",
+                    "position": 26,
+                    "prompt": "How is interest coverage ratio analyzed?",
+                    "prompt_schema": null,
+                    "prompt_type": "advanced"
+                }
+            ]
+        },
+        "Other": {
+            "class_id": "111385",
+            "description": "",
+            "fields": []
+        }
+    },
+    "project_udfs": {
+        "5618": {
+            "args": [
+                {
+                    "data_type": "FIELD",
+                    "name": "Maturity_Date",
+                    "value": "Maturity Date"
+                }
+            ],
+            "code": "\n\ndef validate_maturity_date(Maturity_Date, context = {}, keys = {}, **kwargs):\n    import dateparser\n    import re\n    date_formats = ['^\\\\d{2}/\\\\d{2}/\\\\d{4}$', '^\\\\w+ \\\\d{1,2}, \\\\d{4}$', '^\\\\d{4}$', '^\\\\d{4}-\\\\d{2}-\\\\d{2}$', '^\\\\d{2}-\\\\d{2}-\\\\d{4}$', '^\\\\d{4}/\\\\d{2}/\\\\d{2}$', '^\\\\d{1,2}(st|nd|rd|th) \\\\w+ \\\\d{4}$']\n    if not any((re.match(fmt, Maturity_Date) for fmt in date_formats)):\n        return \"Invalid date format for 'Maturity Date'.\"\n    parsed_date = dateparser.parse(Maturity_Date)\n    if not parsed_date:\n        return \"Invalid date format for 'Maturity Date'.\"\n    return None",
+            "docstring": "    Validates the 'Maturity Date' field.\n\n    Fields:\n    - Maturity Date: Expected to be a string representing a date in various formats such as:\n      * '17/12/2024'\n      * 'March 8, 2018'\n      * '2015'\n      * '2019'\n      * 'December 8, 2025'\n      * 'September 30, 2024'\n      * 'September 30, 2025'\n\n    The function checks if the 'Maturity Date' is in a valid format. If it is not, it returns a specific error message.\n    If the date is valid, it returns None.",
+            "examples": [
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Base case: Valid date format in DD/MM/YYYY.",
+                    "expected": true,
+                    "fields": {
+                        "332273": "17/12/2024"
+                    },
+                    "id": 13214,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Base case: Valid date format with full month name and day, year.",
+                    "expected": true,
+                    "fields": {
+                        "332273": "March 8, 2018"
+                    },
+                    "id": 13215,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Edge case: Valid year-only format.",
+                    "expected": true,
+                    "fields": {
+                        "332273": "2015"
+                    },
+                    "id": 13216,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Edge case: Valid year-only format.",
+                    "expected": true,
+                    "fields": {
+                        "332273": "2019"
+                    },
+                    "id": 13217,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Base case: Valid date format with full month name and day, year.",
+                    "expected": true,
+                    "fields": {
+                        "332273": "December 8, 2025"
+                    },
+                    "id": 13218,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Base case: Valid date format with full month name and day, year.",
+                    "expected": true,
+                    "fields": {
+                        "332273": "September 30, 2024"
+                    },
+                    "id": 13219,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Base case: Valid date format with full month name and day, year.",
+                    "expected": true,
+                    "fields": {
+                        "332273": "September 30, 2025"
+                    },
+                    "id": 13220,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Invalid case: Incorrect date format with hyphens instead of slashes.",
+                    "expected": false,
+                    "fields": {
+                        "332273": "17-12-2024"
+                    },
+                    "id": 13221,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": false,
+                    "created_at": 1737022659000,
+                    "description": "Invalid case: Incorrect date format with ordinal suffix 'th'.",
+                    "expected": false,
+                    "fields": {
+                        "332273": "March 8th, 2018"
+                    },
+                    "id": 13222,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Invalid case: Incorrect date format with day first instead of month.",
+                    "expected": false,
+                    "fields": {
+                        "332273": "15/12/2024"
+                    },
+                    "id": 13223,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Invalid case: Incorrect date format with year first and hyphens.",
+                    "expected": false,
+                    "fields": {
+                        "332273": "2015-12-17"
+                    },
+                    "id": 13224,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Invalid case: Incorrect date format with year first and slashes.",
+                    "expected": false,
+                    "fields": {
+                        "332273": "2024/12/17"
+                    },
+                    "id": 13225,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Invalid case: Incorrect date format with ordinal suffix 'th' and day first.",
+                    "expected": false,
+                    "fields": {
+                        "332273": "30th September 2024"
+                    },
+                    "id": 13226,
+                    "updated_at": 1737022701000
+                },
+                {
+                    "actual": true,
+                    "created_at": 1737022659000,
+                    "description": "Invalid case: Incorrect date format with year first and hyphens.",
+                    "expected": false,
+                    "fields": {
+                        "332273": "2025-09-30"
+                    },
+                    "id": 13227,
+                    "updated_at": 1737022701000
+                }
+            ],
+            "function_code": "    import dateparser\n    import re\n    date_formats = ['^\\\\d{2}/\\\\d{2}/\\\\d{4}$', '^\\\\w+ \\\\d{1,2}, \\\\d{4}$', '^\\\\d{4}$', '^\\\\d{4}-\\\\d{2}-\\\\d{2}$', '^\\\\d{2}-\\\\d{2}-\\\\d{4}$', '^\\\\d{4}/\\\\d{2}/\\\\d{2}$', '^\\\\d{1,2}(st|nd|rd|th) \\\\w+ \\\\d{4}$']\n    if not any((re.match(fmt, Maturity_Date) for fmt in date_formats)):\n        return \"Invalid date format for 'Maturity Date'.\"\n    parsed_date = dateparser.parse(Maturity_Date)\n    if not parsed_date:\n        return \"Invalid date format for 'Maturity Date'.\"\n    return None",
+            "id": 5618,
+            "lambda_udf_id": "v1:AWS_LAMBDA:4027417007:insaprd-use2-aihub-prd-docker-default-udf:8",
+            "most_recent_results_path": "ib-internal/SolEng_workspace/fs/Instabase Drive/aihub/0193aa25-6544-775f-b9c9-413793f9f9b8/project/modules/scripts/VALIDATIONS/8eacabb5-480e-47b9-9d30-374468e80b00_output.json",
+            "name": "validate_maturity_date",
+            "project_uuid": "0193aa25-6544-775f-b9c9-413793f9f9b8",
+            "return_type": "string",
+            "scripts_full_path": "ib-internal/SolEng_workspace/fs/Instabase Drive/aihub/0193aa25-6544-775f-b9c9-413793f9f9b8/project/modules/scripts/VALIDATIONS/8eacabb5-480e-47b9-9d30-374468e80b00.json",
+            "type": "VALIDATIONS"
+        }
+    },
+    "project_validations": [
+        {
+            "affected_fields": [
+                332273
+            ],
+            "alert_level": "FAILURE",
+            "created_at": 1737022478000,
+            "description": "Validation prompt",
+            "id": 5268,
+            "input_fields": [
+                332273
+            ],
+            "name": "Rule 1",
+            "params": {
+                "prompt": "\\Maturity Date\\",
+                "udf_id": 5618
+            },
+            "scope": "FIELD",
+            "type": "PROMPT_UDF",
+            "updated_at": 1737022480000
+        }
+    ],
+    "reader_profile": {
+        "createdBy": "",
+        "createdOn": 1725865583672,
+        "defaultProfile": "",
+        "foundationVersion": "",
+        "inputPath": null,
+        "lastModifiedBy": "",
+        "lastModifiedOn": 1725865583672,
+        "outputPath": null,
+        "profiles": [
+            {
+                "entitySettings": [],
+                "name": "aihub",
+                "readSettings": {
+                    "add_barcode_identifier": true,
+                    "cache_pdf_results": false,
+                    "correct_inversion": false,
+                    "correct_orientation": false,
+                    "correct_resolution": false,
+                    "correct_resolution_auto": false,
+                    "detect_barcodes": false,
+                    "detect_blurry_files": false,
+                    "dewarp_page": true,
+                    "document_mapping": "document_is_record_skip_empty_page",
+                    "enable_ibdoc_v2": true,
+                    "encryption_config": null,
+                    "entity_models": [
+                        {
+                            "model_name": "signature_model",
+                            "model_version": "0.0.4"
+                        },
+                        {
+                            "model_name": "barcode_qrcode_detection",
+                            "model_version": "1.0.0"
+                        }
+                    ],
+                    "extract_all_pdf_layers": false,
+                    "find_lines": false,
+                    "fonts": null,
+                    "force_image_ocr": false,
+                    "image_filters": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "layout_algorithm": "layout_algo_spatial",
+                    "model_specific_settings": {
+                        "marx_v1": {
+                            "version": "layout_v3"
+                        }
+                    },
+                    "ocr_page_type": "marx",
+                    "ocr_timeout": null,
+                    "output_format_layout": "layout_per_page",
+                    "output_formats": null,
+                    "page_range_str": "",
+                    "preprocess_excel_files": false,
+                    "process_type": "auto_to_txt",
+                    "produce_metadata_list": true,
+                    "produce_word_metadata": true,
+                    "remove_boxes": false,
+                    "remove_boxes_over_height_percent": null,
+                    "remove_boxes_over_width_percent": null,
+                    "remove_space_wordpolys": true,
+                    "remove_vertical_text": false,
+                    "reorient_words": false,
+                    "repair_pdfs": false,
+                    "scripts_dir": "",
+                    "write_converted_image": true,
+                    "write_thumbnail": true
+                }
+            }
+        ],
+        "schema": "1"
+    }
+}

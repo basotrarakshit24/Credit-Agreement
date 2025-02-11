@@ -1,0 +1,25 @@
+{
+    "last_updated": 1737022480000,
+    "rules": [
+        {
+            "affected_fields": [
+                332273
+            ],
+            "alert_level": "FAILURE",
+            "created_at": 1737022478000,
+            "description": "Validation prompt",
+            "id": 5268,
+            "input_fields": [
+                332273
+            ],
+            "name": "Rule 1",
+            "params": {
+                "prompt": "\\Maturity Date\\",
+                "udf_id": 5618
+            },
+            "scope": "FIELD",
+            "type": "PROMPT_UDF",
+            "updated_at": 1737022480000
+        }
+    ]
+}
